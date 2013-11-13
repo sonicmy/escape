@@ -9,7 +9,7 @@ import scala.compat._
 
 object Main extends PApplet {
 
-  val (xWIDTH,xHEIGHT,xSCALE) = (640,320,2)
+  val (xWIDTH,xHEIGHT,xSCALE) = (640,320,1)
 
   private var test:Main = _
 
@@ -32,20 +32,29 @@ object Main extends PApplet {
 class Main extends PApplet {
 
   val (xWIDTH, xHEIGHT, xSCALE) = (Main.xWIDTH*Main.xSCALE, Main.xHEIGHT*Main.xSCALE, Main.xSCALE)
-  val bitmap = new Bitmap(100*xSCALE,100*xSCALE,this)
+  var (lastFrames,frames,lastTime) = (0,0,0L)
+  val screen = new Screen(xWIDTH, xHEIGHT-100,this)
 
   override def setup() = {  
-    size(xHEIGHT,xWIDTH)
+    size(xHEIGHT*xSCALE,xWIDTH*xSCALE)
     frameRate(60)
     background(0,0,0)
+    textSize(16*xSCALE)
   }
 
   override def draw() = {
+    //scale(xSCALE)
     background(0,0,0)
-    for (i <- 0 to 100) {
-      val x0 = (math.sin(((Platform.currentTime + i * 16) % 2000 / 2000.0 * Math.PI * 2)) * xWIDTH /  3).toInt
-      val y0 = (math.cos(((Platform.currentTime + i * 16) % 2000 / 2000.0 * Math.PI * 2)) * xHEIGHT / 3).toInt
-      image(bitmap.draw,(xWIDTH-bitmap.width) / 2 + x0, (xHEIGHT-bitmap.height) / 2 + y0)
+
+    image(screen.render,0,0)
+
+    if(Platform.currentTime - lastTime > 1000){
+      lastFrames = frames
+      frames = 0
+      lastTime = Platform.currentTime
     }
+    fill(255,255,255)
+    text(lastFrames,xWIDTH - 40,15)
+    frames +=1
   }
 }
