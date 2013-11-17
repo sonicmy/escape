@@ -13,13 +13,16 @@ class Bitmap(val width: Int, val height: Int, var pixels: Array[Int]) {
 	def this(width: Int, height: Int) = this(width,height,new Random)
 
 	def draw(bitmap:Bitmap, xOffs: Int, yOffs: Int): Array[Int] = {
-		for { y <- 0 until bitmap.height
-		      val yPos = y + yOffs
-			  if(yPos >= -1 && yPos < height) 
-			  x <- 0 until bitmap.width
-		      val xPos = x + xOffs
-			  if(xPos >= -1 && xPos < width)} 
-			  	pixels(xPos+yPos*width) = bitmap.pixels(x+y*bitmap.width)
+		val xLen =  Math.min(bitmap.width, width - xOffs)
+		val yLen =  Math.min(bitmap.height, height - yOffs)
+		if(xLen>0) {
+		  var y = 0
+		  while(y < yLen) {
+			 	if(xOffs+(y+yOffs)*width > 0)
+			 	Array.copy(bitmap.pixels, y*bitmap.width, pixels, xOffs+(y+yOffs)*width, xLen)
+			 	y+=1
+			 }
+		}
 		pixels
 	}
 

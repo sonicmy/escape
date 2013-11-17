@@ -5,11 +5,12 @@ import math._
 import scala.util.Random
 import java.awt.Dimension
 import org.game.escape.gui._
+import org.game.escape.game._
 import scala.compat._
 
 object Main extends PApplet {
 
-  val (xWIDTH,xHEIGHT,xSCALE) = (640,320,1)
+  val (xWIDTH,xHEIGHT,xSCALE) = (320,160,4)
 
   private var test:Main = _
 
@@ -19,7 +20,7 @@ object Main extends PApplet {
     frame.getContentPane().add(test)
     test.init
 
-    val size = new Dimension(xWIDTH*xSCALE,xHEIGHT*xSCALE)
+    val size = new Dimension(xWIDTH*xSCALE+2,xHEIGHT*xSCALE+29)
 
     frame.pack
     frame.setVisible(true)
@@ -32,8 +33,11 @@ object Main extends PApplet {
 class Main extends PApplet {
 
   val (xWIDTH, xHEIGHT, xSCALE) = (Main.xWIDTH*Main.xSCALE, Main.xHEIGHT*Main.xSCALE, Main.xSCALE)
+  val PANEL_HEIGHT = 3*8*xSCALE
   var (lastFrames,frames,lastTime) = (0,0,0L)
-  val screen = new Screen(xWIDTH, xHEIGHT-100,this)
+
+  val itemScreen = new Screen(xWIDTH, PANEL_HEIGHT, xSCALE ,this)
+  val game = new Game
 
   override def setup() = {  
     size(xHEIGHT*xSCALE,xWIDTH*xSCALE)
@@ -42,11 +46,26 @@ class Main extends PApplet {
     textSize(16*xSCALE)
   }
 
-  override def draw() = {
-    //scale(xSCALE)
-    background(0,0,0)
+  def randRect(bit: Bitmap, xOffs: Int, yOffs: Int): Array[Int] = {
+    var di = 0
+    var dpix = itemScreen.pixels
+    while(di < 1000) {
+      val x0 = (game.time % 10000 + di * width/20) - width/2
+      val y0 = 0
+      dpix = itemScreen.draw(bit,x0,y0)
+      di+=1
+    }
+    dpix
+  }
 
-    image(screen.render,0,0)
+  def rend(){
+    image(itemScreen.render(game,randRect),0,xHEIGHT - PANEL_HEIGHT)
+  }
+
+  override def draw() = {
+    background(0,0,0)
+    game.tick
+    rend()
 
     if(Platform.currentTime - lastTime > 1000){
       lastFrames = frames
@@ -54,7 +73,7 @@ class Main extends PApplet {
       lastTime = Platform.currentTime
     }
     fill(255,255,255)
-    text(lastFrames,xWIDTH - 40,15)
+    text(lastFrames,xWIDTH - 20*xSCALE,15*xSCALE)
     frames +=1
   }
 }

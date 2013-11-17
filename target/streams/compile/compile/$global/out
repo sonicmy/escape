@@ -16,13 +16,13 @@
 [0m[[0minfo[0m] [0mCompiling 1 Scala source to /home/sonicmy/sbtProjects/escape/target/scala-2.10/classes...[0m
 [0m[[0mdebug[0m] [0mGetting compiler-interface from component compiler for Scala 2.10.2[0m
 [0m[[0mdebug[0m] [0mGetting compiler-interface from component compiler for Scala 2.10.2[0m
-[0m[[0mdebug[0m] [0mRunning cached compiler afa335, interfacing (CompilerInterface) with Scala compiler version 2.10.2[0m
+[0m[[0mdebug[0m] [0mRunning cached compiler 1e313c3, interfacing (CompilerInterface) with Scala compiler version 2.10.2[0m
 [0m[[0mdebug[0m] [0mCalling Scala compiler with arguments  (CompilerInterface):[0m
 [0m[[0mdebug[0m] [0m	-bootclasspath[0m
 [0m[[0mdebug[0m] [0m	/usr/bin/java/jdk1.7.0_21/jre/lib/resources.jar:/usr/bin/java/jdk1.7.0_21/jre/lib/rt.jar:/usr/bin/java/jdk1.7.0_21/jre/lib/sunrsasign.jar:/usr/bin/java/jdk1.7.0_21/jre/lib/jsse.jar:/usr/bin/java/jdk1.7.0_21/jre/lib/jce.jar:/usr/bin/java/jdk1.7.0_21/jre/lib/charsets.jar:/usr/bin/java/jdk1.7.0_21/jre/lib/jfr.jar:/usr/bin/java/jdk1.7.0_21/jre/classes:/home/sonicmy/.sbt/boot/scala-2.10.2/lib/scala-library.jar[0m
 [0m[[0mdebug[0m] [0m	-classpath[0m
 [0m[[0mdebug[0m] [0m	/home/sonicmy/sbtProjects/escape/target/scala-2.10/classes:/home/sonicmy/sbtProjects/escape/lib/gluegen-rt.jar:/home/sonicmy/sbtProjects/escape/lib/core.jar:/home/sonicmy/sbtProjects/escape/lib/jogl-all-natives-linux-i586.jar:/home/sonicmy/sbtProjects/escape/lib/gluegen-rt-natives-linux-i586.jar:/home/sonicmy/sbtProjects/escape/lib/jogl-all.jar[0m
-[0m[[0mdebug[0m] [0mScala compilation took 0.718786571 s[0m
+[0m[[0mdebug[0m] [0mScala compilation took 1.093961922 s[0m
 [0m[[0mdebug[0m] [0mInvalidated by transitive public inheritance: Set()[0m
 [0m[[0mdebug[0m] [0mInvalidated by direct dependency: Set()[0m
 [0m[[0mdebug[0m] [0mNew invalidations:[0m
